@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.login {
+    /* border: 2px solid red; */
+    height: fit-content;
+    min-height: 90vh;
+    background-color: rgb(14, 25, 60);
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+}
+
+.login img {
+    width: 30rem;
+}
+
+.getintouch {
+    /* background-color: rgb(13, 25, 43); */
+    padding: 10px;
+    width: 40rem;
+    /* height: 35rem; */
+    border-radius: 30px;
+    /* border: 1px solid white; */
+}
+
+.getintouch h2{
+    text-align: center;
+    margin: 30px;
+    color: var(--headingColor);
+}
+
+.getintouch form {
+    /* border: 2px solid coral; */
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background: var(--darkColor);
+    border-radius: 5px;
+    /* font-family: 'Roboto Mono', monospace; */
+    border-color: var(--borderColor);
+    color: var(--headingColor);
+}
+
+.getintouch form label {
+    margin-bottom: 10px;
+}
+
+.getintouch form input {
+    margin-bottom: 40px;
+    padding: 10px 10px;
+    border: 1px solid grey;
+    border-radius: 2px;
+    background: var(--lightColor);
+    color: var(--headingColor);
+}
+
+.getintouch form textarea {
+    margin-bottom: 30px;
+    background: var(--lightColor);
+}
+
+.getintouch form input[type="submit"] {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    background-color: #e8415e;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+}
+
+.getintouch p {
+    text-align: center;
+}
+
+.getintouch p span {
+    color: #e8415e;
+}
+
+@media screen and (max-width: 945px) {
+
+    .login {
+        /* border: 2px solid red; */
+        padding: 10px;
+    }
+
+    .login img {
+        display: none;
+    }
+
+}

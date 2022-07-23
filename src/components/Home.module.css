@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.home {
+    min-width: 100vw;
+    height: 90vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home_first {
+    height: 100vh;
+    background-size: cover;
+    color: #fff;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_first_div h1 {
+    margin-bottom: 20px;
+    color: rgb(101, 212, 110);
+}
+
+.home_first_div h5 {
+    font-size: 1.6rem;
+    text-align: center;
+    color: rgb(134, 146, 255);
+}
+
+.home_second {
+    height: 100%;
+    background-color: rgb(14, 25, 60);
+    display: flex;
+}
+
+.first {
+    border: 2px solid rgb(14, 25, 60);
+    width: 50%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first span {
+    color: #e8415e;
+    font-size: 5rem;
+}
+
+.first h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-size: 5rem;
+    width: 100%;
+}
+
+.first h4 {
+    width: 80%;
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.second {
+    /* border: 2px solid blue; */
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second img {
+    width: 500px;
+}
+
+.first button {
+    padding: 15px 60px;
+    border-radius: 20px;
+    border: 0;
+    background-color: rgb(234, 66, 88);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .home {
+        /* border: 2px solid red; */
+    }
+
+    .home_second {
+        /* border: 2px solid blue; */
+    }
+
+    .first h1 {
+        font-size: 5rem;
+    }
+
+    .first h5 {
+        font-size: 4rem;
+    }
+
+    .second img {
+        width: 28rem;
+    }
+
+}
+
+@media screen and (max-width: 834px) {
+
+    .first h1, .first span {
+        font-size: 3rem;
+    }
+
+    .first h5 {
+        font-size: 2rem;
+    }
+
+    .second img {
+        width: 25rem;
+    }
+
+}
+
+@media screen and (max-width: 770px) {
+
+    .home_second {
+        flex-direction: column;
+        /* border: 2px solid gold; */
+        justify-content: space-around;
+        align-items: center;
+    } 
+
+    .first {
+        width: 100%;
+        /* border: 2px solid palegreen; */
+    }
+
+    .second img {
+        width: 15rem;
+    }
+
+}
+
+@media screen and (max-width: 670px) {
+
+    .first h1, .first span {
+        font-size: 4rem;
+    }
+
+    .first h5 {
+        font-size: 2rem;
+    }
+
+}

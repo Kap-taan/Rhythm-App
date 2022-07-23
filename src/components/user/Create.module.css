@@ -1,0 +1,93 @@
+.create {
+    background: #1a1a1a;
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.getintouch {
+    /* background-color: rgb(13, 25, 43); */
+    padding: 10px;
+    width: 40rem;
+    /* height: 35rem; */
+    border-radius: 30px;
+    /* border: 1px solid white; */
+    margin: auto;
+}
+
+.getintouch h2{
+    text-align: center;
+    margin: 30px;
+    color: var(--headingColor);
+}
+
+.getintouch form {
+    /* border: 2px solid coral; */
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background: var(--darkColor);
+    border-radius: 5px;
+    /* font-family: 'Roboto Mono', monospace; */
+    border-color: var(--borderColor);
+    color: var(--headingColor);
+}
+
+.getintouch form label {
+    margin-bottom: 10px;
+}
+
+.getintouch form input {
+    margin-bottom: 40px;
+    padding: 10px 10px;
+    border: 1px solid grey;
+    border-radius: 2px;
+    background: var(--lightColor);
+    color: var(--headingColor);
+}
+
+.getintouch form textarea {
+    margin-bottom: 30px;
+    background: var(--lightColor);
+}
+
+.getintouch form input[type="submit"] {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    background-color: #e8415e;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+}
+
+.getintouch p {
+    text-align: center;
+}
+
+.getintouch p span {
+    color: #e8415e;
+}
+
+@media screen and (max-width: 945px) {
+
+    .getintouch {
+        width: 24rem;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    .getintouch {
+        width: 21rem;
+    }
+
+    .getintouch form {
+        width: 90%;
+    }
+
+}
