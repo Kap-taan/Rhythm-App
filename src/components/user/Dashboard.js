@@ -6,6 +6,7 @@ import Singers from './dashboard/Singers';
 import { useEffect, useState } from 'react';
 import Ad from './Ad';
 import RecentSong from './RecentSong';
+import CustomPlaylist from './dashboard/CustomPlaylist';
 
 const Dashboard = () => {
 
@@ -28,6 +29,7 @@ const Dashboard = () => {
             {!visible && <Singers />}
             {!visible && <Recent type="Popular Songs" />}
             {!visible && <RecentSong type="New Releases" />}
+            {!visible && <CustomPlaylist />}
             {visible && <Ad setVisible={setVisible} />}
         </div>
     );

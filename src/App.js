@@ -20,6 +20,7 @@ import Album1 from "./components/user/details/Album";
 import Singer from "./components/user/details/Singer";
 import Topbar from "./components/user/Topbar";
 import Liked from "./components/user/Liked";
+import CustomDetail from "./components/user/details/CustomDetail";
 
 function App() {
   return (
@@ -123,6 +124,14 @@ function App() {
               element={
                 <RequireAuth>
                   <MusicPlayer><div className="App_first"><Navbar /><Singer /></div></MusicPlayer>
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/custom/:id"
+              element={
+                <RequireAuth>
+                  <MusicPlayer><div className="App_first"><Navbar /><CustomDetail /></div></MusicPlayer>
                 </RequireAuth>
               }
             />

@@ -16,7 +16,7 @@ const Home = () => {
                 <div className={classes.first}>
                     <h1><span>Listen</span> to  new music</h1>
                     <h4>
-                        Millions of songs and podcasts. No credit card needed.
+                    Discover, Play, Repeat: Your Melodic Journey Begins Here!
                     </h4>
                     <div className={classes.btn}>
                     <Link to="/signup"><button>Signup</button></Link>

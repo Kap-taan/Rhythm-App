@@ -1,9 +1,10 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where, arrayUnion, arrayRemove, setDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useKey } from 'rooks';
 import { db } from '../../data/firebase';
 import AuthContext from '../../stores/AuthContext';
 import classes from './music.module.css';
+import { useLocation } from 'react-router-dom';
 
 const MusicContext = React.createContext({});
 
@@ -11,8 +12,10 @@ export const MusicPlayer = ({ children }) => {
 
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false);
+    const [isLikedButtonHidden, setIsLikedButtonHidden] = useState(false);
 
     const [nextData, setNextData] = useState([]);
+
 
     // User Data
     const { user } = useContext(AuthContext);
@@ -46,9 +49,25 @@ export const MusicPlayer = ({ children }) => {
     // UseEffect
     useEffect(() => {
         barRef.current.style.width = '0%';
+        if(data.type === undefined) {
+            setIsLikedButtonHidden(true);
+        } else {
+            setIsLikedButtonHidden(false);
+        }
         playHandler();
 
     }, [data]);
+
+    useEffect(() => {
+        // Check the local storage for volume
+        if(localStorage.getItem('volume')) {
+            const audio = audioRef.current;
+            const volumeElement = volumeRef.current;
+            const value = parseFloat(localStorage.getItem('volume'));
+            audio.volume = value;
+            volumeElement.style.width = Math.ceil(value * 100) + '%';
+        }   
+    }, [])
 
     // Playing the Song on Clicking play button
     const playHandler = () => {
@@ -126,55 +145,36 @@ export const MusicPlayer = ({ children }) => {
         const amount = (width / fullWidth) * duration;
         audio.volume = amount;
         console.log(amount);
+        localStorage.setItem('volume', amount);
         volumeElement.style.width = Math.ceil(amount * 100) + '%';
 
 
     }
 
     // Add this song to the Favourites
-    const favouriteHandler = () => {
-
-        updateDoc(doc(db, "songs", data.id), {
-            favourites: [...data.favourites, user.uid]
-        }).then(() => {
-            data.isFavourite = true;
-            const collectionName = user.uid + '@' + 'liked'
-            return addDoc(collection(db, collectionName), data);
-        })
-        .then(() => {
-            console.log('Added to Favourites');
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    const favouriteHandler = async () => {
+        console.log('I am here');
+        const songRef = doc(db, "songs", data.id);
+        data.isFavourite = true;
+        await updateDoc(songRef, {
+            favourites: arrayUnion(user.uid)
+        });
+        const collectionName = user.uid + '@' + 'liked'
+        await setDoc(doc(db, collectionName, data.id), data);
 
     }
 
     // Removing the songs from the Favourites
-    const NotFavouriteHandler = () => {
+    const NotFavouriteHandler = async () => {
 
-        data.favourites = data.favourites.filter(favourite => favourite !== user.uid);
+        
+        const songRef = doc(db, "songs", data.id);
+        await updateDoc(songRef, {
+            favourites: arrayRemove(user.uid)
+        });
+        data.isFavourite = false;
         const collectionName = user.uid + '@' + 'liked'
-
-        updateDoc(doc(db, "songs", data.id), {
-            favourites: data.favourites
-        }).then(() => {
-            data.isFavourite = false;
-            return getDocs(query(collection(db, collectionName), where("title", "==", data.title)))
-        })
-        .then(docs => {
-            let doc_id;
-            docs.forEach(doc => {
-                doc_id = doc.id;
-            })
-            return deleteDoc(doc(db, collectionName, doc_id));
-        })
-        .then(() => {
-            console.log('Added to Favourites');
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        deleteDoc(doc(db, collectionName, data.id));
 
     }
 
@@ -225,10 +225,10 @@ export const MusicPlayer = ({ children }) => {
                         <h4>{data.title}</h4>
                         <h5>{data.singer}</h5>
                     </div>
-                    <div className={classes.music_first_third}>
+                    {!isLikedButtonHidden && <div className={classes.music_first_third}>
                         {!data.isFavourite && <img src="/icon/heart.svg" alt="Heart" onClick={favouriteHandler} />}
                         {data.isFavourite && <img src="/icon/heart.png" alt="Heart" onClick={NotFavouriteHandler} />}
-                    </div>
+                    </div>}
                 </div>
                <div className={classes.music_second}>
                     <div className={classes.music_second_first}>

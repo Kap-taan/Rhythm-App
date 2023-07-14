@@ -28,9 +28,9 @@ const Topbar = () => {
         <div className={classes.dashboard_first}>
             <img src='/icon/arrow_left.svg' alt="Behind" className={classes.back} onClick={backHandler} />
             <img src='/icon/arrow_right.svg' alt="Forward" className={classes.back} onClick={forwardHandler} />
-            <div className={classes.dashboard_first_first}>
+            {/* <div className={classes.dashboard_first_first}>
                 <button><Link to="/musicmode">Music Mode</Link></button>
-            </div>
+            </div> */}
             
         </div>
     );

@@ -21,9 +21,9 @@
     width: 20%;
 }
 
-/* .music_first_first {
+.music_first_first {
     margin-right: 20px;
-} */
+}
 
 .music_first_first img {
     width: 4rem;
@@ -31,6 +31,9 @@
 
 .music_first_second {
     margin-right: 20px;
+    overflow: hidden; /* Hide any content that exceeds the container's width */
+    text-overflow: ellipsis; /* Show an ellipsis (...) when the text is truncated */
+    white-space: nowrap;
 }
 
 .music_first_second h4 {

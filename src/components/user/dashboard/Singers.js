@@ -15,6 +15,7 @@ const Singers = () => {
             let singers = [];
             docs.forEach(doc => {
                 singers = [...singers, {
+                    id: doc.id,
                     title: doc.data().title,
                     img: doc.data().img,
                     count: doc.data().count
@@ -30,7 +31,7 @@ const Singers = () => {
             <h3>Singers</h3>
             <div className={classes.recent_first}>
                 {data.map(song => (
-                    <Link to={`/singers/${song.title}`}><div className={classes.recent_second}>
+                    <Link to={`/singers/${song.title}`} key={song.id}><div className={classes.recent_second}>
                         <img src={song.img} alt="Song" />
                         <h2>{song.title}</h2>
                     </div></Link>

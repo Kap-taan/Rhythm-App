@@ -6,12 +6,15 @@
     font-family: 'Roboto', sans-serif;
     color: #fff;
     padding: 0px 40px;
+    padding-bottom: 100px;
+    scrollbar-width: none;
 }
 
 .songs_grid {
     /* border: 2px solid red; */
     height: 100%;
     overflow: scroll;
+    scrollbar-width: none;
     padding: 20px;
 }
 
@@ -20,6 +23,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
+    scrollbar-width: none;
 }
 
 .recent_first {

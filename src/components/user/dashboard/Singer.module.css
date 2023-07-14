@@ -12,6 +12,7 @@
 
 .recent_first {
     display: flex;
+    scrollbar-width: none;
 }
 
 .recent_first {

@@ -12,43 +12,34 @@ const RecentSong = ({ type }) => {
 
     const { user } = useContext(AuthContext);
 
+    const getSongs = async () => {
+
+        const data = await getDocs(query(collection(db, "songs"), orderBy("released_date", "desc"), limit(10)));
+        let tempSongs = [];
+        data.forEach(doc => {
+            let favourites = doc.data().favourites;
+            if(favourites === undefined) {
+                favourites = [];
+            }
+            let isFavourite = false;
+            if (favourites.includes(user.uid)) {
+                isFavourite = true;
+            }
+            tempSongs = [...tempSongs, {
+                id: doc.id,
+                ...doc.data(),
+                isFavourite
+            }]
+        });
+
+        setData(tempSongs);
+    }
+
     useEffect(() => {
 
-        const q = query(collection(db, "songs"), orderBy("released_date", "desc"), limit(10));
-        getDocs(q).then(docs => {
-            let songs = [];
+        if(user) getSongs();
 
-            docs.forEach(doc => {
-
-                let favourites;
-                let isFavourite;
-                if(doc.data().favourites === undefined) {
-                    favourites = [];
-                } else {
-                    favourites = doc.data().favourites;
-                }
-                console.log(favourites.filter(favourite => favourite === user.uid)[0]);
-                if(favourites.filter(favourite => favourite === user.uid)[0] !== undefined) {
-                    isFavourite = true;
-                } else {
-                    isFavourite = false;
-                }
-
-                songs = [...songs, {
-                    title: doc.data().title,
-                    singer: doc.data().singer,
-                    img: doc.data().img,
-                    link: doc.data().link,
-                    count: doc.data().count,
-                    id: doc.id,
-                    favourites: favourites,
-                    isFavourite: isFavourite
-                }]
-            })
-            setData(songs);
-        })
-
-    }, [])
+    }, [user])
 
     const clickHandler = (song) => {
         const songDoc = doc(db, "songs", song.id);
@@ -67,7 +58,7 @@ const RecentSong = ({ type }) => {
             <h3>{type}</h3>
             <div className={classes.recent_first}>
                 {data.map(song => (
-                    <div className={classes.recent_second} onClick={() => {
+                    <div className={classes.recent_second} key={song.id} onClick={() => {
                         clickHandler(song)
                     }}>
                         <img src={song.img} alt="Song" />

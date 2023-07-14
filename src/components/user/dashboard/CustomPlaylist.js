@@ -1,42 +1,39 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState}  from 'react'
 import { db } from '../../../data/firebase';
 import { getDocs, collection, query, orderBy, limit, doc, updateDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import classes from './Album.module.css'
+import classes from './Singer.module.css';
 
-const Album = () => {
+const CustomPlaylist = () => {
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
 
-        const q = query(collection(db, "albums"), limit(10));
+        const q = query(collection(db, "customPlaylists"));
         getDocs(q).then(docs => {
-            let albums = [];
+            let singers = [];
             docs.forEach(doc => {
-                albums = [...albums, {
+                singers = [...singers, {
                     id: doc.id,
-                    title: doc.data().title,
+                    type: doc.data().type,
                     img: doc.data().img,
-                    singer: doc.data().singer,
                     count: doc.data().count
                 }]
             })
-            setData(albums);
+            setData(singers);
         })
 
     }, [])
 
-
     return (
         <div className={classes.recent}>
-            <h3>Albums</h3>
+            <h3>Playlists</h3>
             <div className={classes.recent_first}>
                 {data.map(song => (
-                    <Link to={`/album/${song.title}`} key={song.id}><div className={classes.recent_second}>
+                    <Link to={`/custom/${song.type}`} key={song.id}><div className={classes.recent_second}>
                         <img src={song.img} alt="Song" />
-                        <h2>{song.title}</h2>
-                        <h4>{song.singer}</h4>
+                        <h2>{song.type}</h2>
                     </div></Link>
                 ))}
             </div>
@@ -45,4 +42,4 @@ const Album = () => {
 
 }
 
-export default Album;
+export default CustomPlaylist;

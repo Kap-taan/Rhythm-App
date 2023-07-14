@@ -3,6 +3,7 @@
     padding: 0px 40px;
     cursor: pointer;
     margin-bottom: 40px;
+    /* padding-bottom: 100px; */
 }
 
 .recent h3 {
@@ -12,6 +13,7 @@
 
 .recent_first {
     display: flex;
+    scrollbar-width: none;
 }
 
 .recent_first {

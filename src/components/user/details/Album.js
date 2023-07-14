@@ -77,7 +77,7 @@ const Album1 = () => {
             {!loading && <div className={classes.songs_grid}>
             <div className={classes.recent_first}>
                 {data.map(song => (
-                    <div className={classes.recent_second} onClick={() => {
+                    <div className={classes.recent_second} key={song.id} onClick={() => {
                         clickHandler(song)
                     }}>
                         <img src={song.img} alt="Song" />

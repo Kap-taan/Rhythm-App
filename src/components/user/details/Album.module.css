@@ -6,6 +6,7 @@
     font-family: 'Roboto', sans-serif;
     color: #fff;
     padding: 0px 40px;
+    padding-bottom: 100px;
 }
 
 .search_bar_div {
@@ -32,6 +33,7 @@
     /* border: 2px solid red; */
     height: 100%;
     overflow: scroll;
+    scrollbar-width: none;
     padding: 20px;
 }
 
@@ -41,10 +43,12 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
     padding-bottom: 100px; 
+    
 }
 
 .recent_first {
     overflow: scroll;
+    scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
